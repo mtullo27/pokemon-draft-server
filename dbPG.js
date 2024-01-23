@@ -1,15 +1,16 @@
 import pkg from "pg"
-import { pgUser, pgHost, pgDatabase, pgPassword, pgPort } from "./config.js"
+import dotenv from "dotenv"
+dotenv.config()
 
 const { Pool } = pkg
 
 export const pool = new Pool({
-    user: pgUser,
-    host: pgHost,
-    database: pgDatabase,
-    password: pgPassword,
-    port: pgPort,
-    ssl: !pgHost.includes("cloud") && false
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDB,
+    password: process.env.PGPASS,
+    port: process.env.PGPORT,
+    ssl: !process.env.PGHOST.includes("cloud") && false
 })
 
 pool.on("connect", () => {
