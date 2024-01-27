@@ -94,6 +94,7 @@ export const createPokemon = async (req, res) => {
 }
 
 export const updatePokemon = async (req, res) => {
+    console.log(req.body)
     ;(async () => {
         const client = await pool.connect()
         try {
